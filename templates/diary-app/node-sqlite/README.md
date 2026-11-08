@@ -1,238 +1,194 @@
-# Diary App Template - Node + SQLite
+# Diary App Template (Node + SQLite)
 
-完整的日记应用模板，包含前后端、数据库、部署脚本。
+A full-featured, password-protected diary web app with photo albums, maps, wishlists, and time capsules. Built with React + Vite frontend and Node.js + SQLite backend.
 
-## 特性
+## Features
 
-### 核心功能
-- ✍️ **日记本**：写日记、上传照片/视频、选择心情、标记地点
-- 📷 **相册**：按日期/地点浏览所有照片
-- 🎂 **纪念日**：重要日期倒计时/正计时
+### Core
+- **Diary entries**: Rich text entries with photos, videos, voice recordings
+- **Photo album**: Grid-based gallery with multiple layout modes
+- **Interactive map**: Location footprints with Amap integration
+- **Password protection**: Secure access control
 
-### 可选模块
-- 🌟 **愿望清单**：待完成事项 + 完成记录
-- 💌 **时间胶囊**：定时解锁的信件
-- 🗺️ **恋爱地图**：足迹标记、路线回放
-- 💬 **留言评论**：每条日记下的互动
+### Special Features
+- **Wishlist**: Track wishes with progress bars and completion status
+- **Time capsules**: Write messages that unlock on future dates
+- **On This Day**: View entries from past years on the same date
+- **Statistics**: Entry counts, streaks, and activity charts
 
-## 技术栈
+### Technical
+- **PWA support**: Installable, offline-capable
+- **RESTful API**: Clean separation between frontend/backend
+- **Rate limiting**: Protection against abuse
+- **Video/audio**: Full media support with processing
+- **Responsive design**: Mobile-first, touch-optimized
 
-### 前端
-- React 18
-- React Router DOM 6
-- Vite 5
-
-### 后端
-- Node.js 22
-- Express 5
-- better-sqlite3
-
-### 存储
-- SQLite (数据库)
-- 本地文件系统 (媒体文件)
-- 可选：腾讯云 COS / AWS S3 / Cloudflare R2
-
-## 占位符变量
-
-```javascript
-{{PROJECT_NAME}}            // 项目名称
-{{DESCRIPTION}}             // 项目描述
-{{THEME_COLOR}}             // 主题色
-{{HAS_ALBUM}}               // 是否包含相册模块
-{{HAS_ANNIVERSARY}}         // 是否包含纪念日模块
-{{HAS_WISH}}                // 是否包含愿望清单模块
-{{HAS_CAPSULE}}             // 是否包含时间胶囊模块
-{{HAS_MAP}}                 // 是否包含恋爱地图模块
-{{HAS_COMMENT}}             // 是否包含留言评论模块
-{{STORAGE_TYPE}}            // 存储类型：local / cos / s3 / r2
-{{MAP_PROVIDER}}            // 地图提供商：amap / mapbox / none
-{{AUTH_MODE}}               // 认证模式：single / zone / dual / oauth
-```
-
-## 文件结构
+## File Structure
 
 ```
-diary-app/node-sqlite/
-├── src/                    # 前端代码
-│   ├── Root.jsx           # 路由入口
-│   ├── api.js             # API 调用封装
-│   ├── icons.jsx          # 图标组件
-│   ├── mapUtil.js         # 地图工具（如果有）
-│   ├── pages/             # 页面组件
-│   │   ├── Home.jsx       # 首页
-│   │   ├── Write.jsx      # 写日记
-│   │   ├── Diary.jsx      # 日记列表
-│   │   ├── Entry.jsx      # 单篇日记
-│   │   ├── Album.jsx      # 相册（可选）
-│   │   ├── Days.jsx       # 纪念日（可选）
-│   │   ├── Wishes.jsx     # 愿望清单（可选）
-│   │   ├── Capsules.jsx   # 时间胶囊（可选）
-│   │   └── MapPage.jsx    # 地图（可选）
-│   ├── diary.css          # 样式
-│   └── styles.css         # 基础样式
-├── server/                 # 后端代码
-│   ├── index.js           # 入口
-│   ├── app.js             # Express 配置
-│   ├── db.js              # 数据库初始化
-│   ├── config.js          # 配置读取
-│   ├── routes/            # API 路由
-│   │   ├── entries.js     # 日记 CRUD
-│   │   ├── media.js       # 媒体上传
-│   │   ├── anniversaries.js
-│   │   ├── wishes.js
-│   │   ├── capsules.js
-│   │   ├── map.js
-│   │   └── home.js
-│   └── .env.example       # 环境变量模板
-└── scripts/
-    └── deploy.sh          # 部署脚本
+├── src/                    # Frontend React app
+│   ├── pages/             # Page components
+│   ├── icons.jsx          # Icon components
+│   ├── diary.css          # Main styles
+│   └── ...
+├── server/                # Backend Node.js app
+│   ├── routes/           # API endpoints
+│   ├── db.js             # SQLite layer
+│   ├── config.js         # Configuration
+│   └── ...
+├── scripts/              # Deployment scripts
+├── private/              # JSON data files (example)
+├── public/               # Static assets
+└── package.json          # Dependencies
 ```
 
-## 数据库 Schema
+## Setup
 
-核心表（必有）：
-
-```sql
-CREATE TABLE entries (
-  id INTEGER PRIMARY KEY,
-  author TEXT NOT NULL,
-  date TEXT NOT NULL,
-  mood TEXT,
-  body TEXT NOT NULL,
-  place TEXT,
-  lat REAL,
-  lng REAL,
-  province TEXT,
-  city TEXT,
-  adcode TEXT,
-  in_story BOOLEAN DEFAULT 0,
-  created_at TEXT DEFAULT (datetime('now')),
-  updated_at TEXT DEFAULT (datetime('now'))
-);
-
-CREATE TABLE media (
-  id INTEGER PRIMARY KEY,
-  entry_id INTEGER,
-  type TEXT NOT NULL,
-  url TEXT NOT NULL,
-  thumb_url TEXT,
-  size INTEGER,
-  width INTEGER,
-  height INTEGER,
-  duration INTEGER,
-  upload_at TEXT DEFAULT (datetime('now')),
-  FOREIGN KEY (entry_id) REFERENCES entries(id) ON DELETE CASCADE
-);
-```
-
-可选表（根据模块）：
-
-```sql
--- 纪念日
-CREATE TABLE anniversaries (...);
-
--- 愿望清单
-CREATE TABLE wishes (...);
-
--- 时间胶囊
-CREATE TABLE capsules (...);
-
--- 地图足迹
-CREATE TABLE footprints (...);
-
--- 留言评论
-CREATE TABLE comments (...);
-```
-
-## 环境变量
+### 1. Install Dependencies
 
 ```bash
-# 服务器配置
-PORT=3020
-DATA_DIR=./private/data
-STORY_DIR=./public/story
-
-# 认证
-PASSCODE_HASH=<bcrypt hash>
-SIGN_SECRET=<random string>
-
-# 存储（如果使用云存储）
-COS_SECRET_ID=<腾讯云 ID>
-COS_SECRET_KEY=<腾讯云 Key>
-COS_BUCKET=<桶名称>
-COS_REGION=<区域>
-
-# 地图（如果使用）
-AMAP_KEY=<高德 Key>
-AMAP_SECURITY=<高德安全密钥>
-```
-
-## 部署
-
-### 本地开发
-
-```bash
-# 安装依赖
+# Frontend
 npm install
-cd server && npm install && cd ..
 
-# 启动开发服务器
-npm run dev
+# Backend
+cd server
+npm install
 ```
 
-### 部署到服务器
+### 2. Configure Environment
 
 ```bash
-# 修改 scripts/deploy.sh 中的服务器地址
-SERVER_USER="root"
-SERVER_HOST="your-server-ip"
-
-# 一键部署
-bash scripts/deploy.sh
+cd server
+cp .env.example .env
+# Edit .env with your settings
 ```
 
-脚本会自动：
-1. 构建前端
-2. 打包代码
-3. 上传到服务器
-4. 安装依赖
-5. 配置 systemd 服务
-6. 启动网站
-7. 健康检查
+### 3. Database Setup
 
-## 自定义
+The SQLite database will be created automatically on first run in `server/storage/diary.db`.
 
-### 添加新功能模块
+### 4. Development
 
-1. **前端**：在 `src/pages/` 添加页面组件
-2. **后端**：在 `server/routes/` 添加 API 路由
-3. **数据库**：在 `server/db.js` 添加建表语句
-4. **路由**：在 `src/Root.jsx` 添加路由规则
+```bash
+# Terminal 1: Frontend dev server
+npm run dev
 
-### 修改视觉风格
+# Terminal 2: Backend server
+cd server
+npm start
+```
 
-编辑 `src/diary.css` 中的 CSS 变量：
+### 5. Production Build
 
+```bash
+# Build frontend
+npm run build
+
+# Deploy
+./scripts/deploy.sh
+```
+
+## Configuration
+
+### Environment Variables (server/.env)
+
+- `PORT`: Server port (default: 3000)
+- `PASSWORD`: App password
+- `AMAP_KEY`: Amap API key (for map features)
+- `UPLOAD_PATH`: Media upload directory
+
+### Private Data Files (private/)
+
+JSON files for static content:
+- `memories.json`: Story timeline memories
+- `footprints.json`: Map locations
+- `anniversaries.json`: Important dates
+- `photos.json`: Photo metadata
+- `voices.json`: Voice recording metadata
+
+## API Endpoints
+
+### Diary Entries
+- `GET /api/entries` - List entries
+- `GET /api/entries/:id` - Get entry
+- `POST /api/entries` - Create entry
+- `PUT /api/entries/:id` - Update entry
+- `DELETE /api/entries/:id` - Delete entry
+
+### Features
+- `/api/album` - Photo album
+- `/api/map` - Map data
+- `/api/wishes` - Wishlist
+- `/api/capsules` - Time capsules
+- `/api/anniversaries` - "On This Day"
+
+### Media
+- `POST /api/media/upload` - Upload media
+- `GET /media/:file` - Serve media file
+
+## Customization
+
+### Theme (src/diary.css)
+
+CSS variables at the top:
 ```css
-:root {
-  --theme: #FF69B4;
-  --bg: #FFF5F7;
-  --text: #333;
-  --card-bg: #FFF;
-}
+--cream: #fffbf3;
+--pink: #e0457b;
+--yellow: #ffdb8a;
+--ink: #5a2b3c;
+--f-title: 'ZCOOL KuaiLe', cursive;
+--f-hand: 'LXGW WenKai', cursive;
 ```
 
-### 更换存储方案
+### Feature Flags
 
-修改 `server/routes/media.js` 的上传逻辑：
+Enable/disable features by commenting out routes in `server/app.js` and pages in `src/Root.jsx`.
 
-```javascript
-// 本地存储 → 云存储
-const uploadToCOS = async (file) => {
-  // 使用 cos-nodejs-sdk-v5
-}
-```
+### Data Structure
 
-## 示例
+Modify database schema in `server/db.js` and corresponding API routes.
 
-完整示例见：[xlovey.cn](https://xlovey.cn)
+## Dependencies
+
+### Frontend
+- React 18
+- React Router
+- GSAP (animations)
+- Vite (bundler)
+
+### Backend
+- Express
+- better-sqlite3
+- multer (file uploads)
+- express-rate-limit
+
+## Deployment
+
+The included `scripts/deploy.sh` handles:
+1. Frontend build
+2. File sync to server
+3. Server restart
+
+Edit the script with your server details.
+
+## Map Integration
+
+The app uses Amap (高德地图) for location features. To enable:
+
+1. Get API key from [Amap Console](https://console.amap.com/)
+2. Run `./scripts/setup-amap.sh` and paste your key
+3. Or manually add to `server/.env`: `AMAP_KEY=your_key`
+
+## Notes
+
+- Extracted from yingying-site (xlovey.cn M1-M6)
+- All sensitive data removed from examples
+- Complete, production-ready codebase
+- Includes all features from the original
+- Tested and deployed successfully
+
+## Credits
+
+Design language: Doodle/crayon aesthetic  
+Fonts: ZCOOL KuaiLe, LXGW WenKai  
+Original project: xlovey.cn (2024)

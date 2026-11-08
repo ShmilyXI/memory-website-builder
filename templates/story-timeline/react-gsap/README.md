@@ -1,94 +1,56 @@
-# Story Timeline Template - React + GSAP
+# Story Timeline Template
 
-基于 GSAP ScrollTrigger 的故事回忆页面模板。
+A React + GSAP scroll-triggered timeline for displaying memories and stories in an animated, interactive way.
 
-## 特性
+## Features
 
-- 📜 **滚动触发动画**：用户滚动时，照片依次出现，配合淡入/滑动动画
-- 📸 **照片墙**：支持 3-50 张照片，自动按时间排序
-- ✍️ **文字描述**：每张照片可配上 Markdown 格式的描述文字
-- 🎵 **背景音乐**（可选）：循环播放背景音乐
-- 🎤 **配音**（可选）：每张照片可配独立语音
-- 📱 **响应式**：自适应手机/平板/桌面
+- **GSAP ScrollTrigger animations**: Smooth, scroll-based timeline progression
+- **Password protection**: Built-in password gate (chrome.jsx)
+- **Photo viewer**: Full-featured media viewer with zoom and navigation (cute.jsx)
+- **Memory chapters**: Organized story sections with metadata
+- **Responsive design**: Mobile-first with safe area support
+- **Doodle aesthetic**: Crayon-style UI with playful animations
 
-## 使用的技术
-
-- React 18
-- GSAP 3.12 (ScrollTrigger plugin)
-- CSS Grid / Flexbox
-
-## 占位符变量
-
-在生成项目时，skill 会替换以下占位符：
-
-```javascript
-{{PROJECT_NAME}}        // 网站名称，如 "XIAO 与英英"
-{{PHOTOS}}              // 照片数组，JSON 格式
-{{HAS_VOICE}}           // 是否有配音，boolean
-{{HAS_BGM}}             // 是否有背景音乐，boolean
-{{THEME_COLOR}}         // 主题色，如 "#FF69B4"
-```
-
-## 文件结构
+## Files
 
 ```
-story-timeline/react-gsap/
-├── src/
-│   ├── Story.jsx         # 主组件
-│   ├── cute.jsx          # 照片查看器组件
-│   ├── ui.jsx            # UI 工具函数
-│   └── chrome.jsx        # 密码门组件（可选）
-└── README.md
+src/
+├── Story.jsx      - Main timeline component
+├── chrome.jsx     - Password gate and authentication
+├── cute.jsx       - Photo/media viewer
+├── ui.jsx         - UI utilities and helpers
+└── story.css      - Story-specific styles
 ```
 
-## 照片数据格式
+## Dependencies
 
-```javascript
-const photos = [
-  {
-    id: "photo-001",
-    url: "/assets/photos/001.webp",
-    date: "2024-06-27",
-    caption: "第一次见面",
-    description: "那天阳光很好，你穿着白色的裙子...",
-    voiceover: "/assets/voices/001.mp3" // 可选
-  },
-  // ...
-]
-```
+- React 18+
+- GSAP (GreenSock Animation Platform)
+- @gsap/react
+- React Router (if used as part of larger app)
 
-## 自定义
+## Usage
 
-### 修改动画效果
+1. Import the Story component
+2. Provide memory/chapter data structure
+3. Configure password in chrome.jsx if needed
+4. Customize colors and fonts via CSS variables
 
-编辑 `Story.jsx` 中的 GSAP 配置：
+## Customization Points
 
-```javascript
-gsap.from(element, {
-  opacity: 0,
-  y: 100,
-  duration: 1,
-  scrollTrigger: {
-    trigger: element,
-    start: "top 80%",
-    end: "top 20%",
-    toggleActions: "play none none reverse"
-  }
-})
-```
+- **CSS Variables** (story.css):
+  - `--f-title`: Title font family
+  - `--f-hand`: Handwriting font family
+  - `--f-body`: Body font family
+  - `--ink`: Border/outline color
+  - `--pink`: Accent color
 
-### 更换视觉风格
+- **Story Data**: Modify chapter structure in Story.jsx
+- **Password**: Update in chrome.jsx
+- **Photo Sources**: Replace hardcoded photo references with your data
 
-修改 CSS 变量（在 `diary.css` 或独立的 `story.css`）：
+## Notes
 
-```css
-:root {
-  --story-bg: #FFF5F7;
-  --story-text: #333;
-  --story-accent: #FF69B4;
-}
-```
-
-## 示例
-
-完整示例见：[xlovey.cn/story](https://xlovey.cn/story)
+- Extracted from yingying-site (xlovey.cn)
+- Complete code preserved
+- Ready for integration or standalone use

@@ -1,0 +1,179 @@
+/* Story Timeline Template Styles - Extracted from diary.css */
+
+/* Back button on story page */
+.story-back { 
+  position: absolute; 
+  top: max(14px, env(safe-area-inset-top)); 
+  left: 14px; 
+  z-index: 5; 
+  font: 400 16px var(--f-title); 
+  background: #fff; 
+  border: 2.5px solid var(--ink); 
+  border-radius: 999px; 
+  padding: 4px 14px; 
+  box-shadow: 2px 2px 0 var(--ink); 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 3px;
+  color: var(--ink);
+}
+
+/* Timeline home buttons */
+.tl-home { 
+  display: none; 
+  font: 400 14px var(--f-title); 
+  background: #fff; 
+  border: 2.5px solid var(--ink); 
+  border-radius: 999px; 
+  padding: 2px 12px; 
+  box-shadow: 2px 2px 0 var(--ink); 
+  align-items: center; 
+  gap: 3px;
+}
+@media (min-width: 900px) { 
+  .tl-home { 
+    display: inline-flex; 
+    position: fixed; 
+    z-index: 61; 
+    top: 16px; 
+    left: 17px; 
+  } 
+}
+
+.tl-home-m { 
+  display: inline-flex; 
+  margin: 0 0 10px; 
+  font: 400 15px var(--f-title); 
+  background: #fff; 
+  border: 2.5px solid var(--ink); 
+  border-radius: 999px; 
+  padding: 3px 14px; 
+  box-shadow: 2px 2px 0 var(--ink); 
+  align-items: center; 
+  gap: 3px;
+}
+
+/* Memory/Entry styles */
+.mem .ch-title { 
+  text-align: center; 
+}
+
+.mem-meta { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 6px 12px; 
+  font: 500 14px var(--f-body); 
+}
+
+.mem-photos { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 10px; 
+  width: 100%; 
+}
+
+.mem-photos button { 
+  padding: 0; 
+  border: 3px solid var(--ink); 
+  border-radius: 22px; 
+  box-shadow: 4px 4px 0 var(--ink); 
+  overflow: hidden; 
+  background: #fff; 
+  aspect-ratio: 1; 
+}
+
+.mem-photos img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block; 
+}
+
+.mem-photos.n1 button, 
+.mem-photos.nm button:first-child, 
+.mem-photos.wide-last button:last-child { 
+  grid-column: 1 / -1; 
+  aspect-ratio: auto; 
+}
+
+.mem-photos.n1 img, 
+.mem-photos.nm button:first-child img { 
+  height: auto; 
+}
+
+.mem-photos.wide-last button:last-child { 
+  aspect-ratio: 2 / 1; 
+}
+
+.mem-paper { 
+  align-self: stretch; 
+  background: #fff; 
+  border: 3px solid var(--ink); 
+  border-radius: 22px; 
+  box-shadow: 4px 4px 0 var(--ink); 
+  padding: 14px 18px; 
+}
+
+.mem.xiao .mem-paper { 
+  background: #fffbea; 
+}
+
+.mem-body { 
+  font: 400 18px/1.95 var(--f-hand); 
+  white-space: pre-wrap; 
+  overflow-wrap: anywhere; 
+  text-align: left; 
+}
+
+.mem-foot { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 4px 14px; 
+  font: 500 13px var(--f-body); 
+  opacity: .85; 
+}
+
+.mem-foot .heart { 
+  color: #e0457b; 
+}
+
+.mem-foot .d-link { 
+  font: 400 15px var(--f-title); 
+}
+
+.mem-video { 
+  width: 100%; 
+  max-height: 70svh; 
+  border: 3px solid var(--ink); 
+  border-radius: 22px; 
+  box-shadow: 4px 4px 0 var(--ink); 
+  background: #000; 
+  display: block; 
+}
+
+.end .btn.ghost { 
+  margin-top: -6px; 
+}
+
+/* Link to diary entry from photo viewer */
+.pv-link { 
+  justify-self: center; 
+  margin: 4px auto 0; 
+  font: 400 17px var(--f-title); 
+  background: var(--pink); 
+  color: #fff; 
+  border: 2.5px solid #fff; 
+  border-radius: 999px; 
+  padding: 6px 20px; 
+  text-shadow: 1px 1px 0 var(--ink); 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d-card, .d-story, .d-prog i { 
+    transition: none; 
+  }
+}

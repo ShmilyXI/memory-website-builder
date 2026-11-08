@@ -1,0 +1,17 @@
+{
+  "name": "肖肖和英英的恋爱日记",
+  "short_name": "恋爱日记",
+  "description": "肖肖和英英的小站：日记、相册、纪念日、恋爱地图和我们的故事",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF4F0",
+  "theme_color": "#FFF4F0",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

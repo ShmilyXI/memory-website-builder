@@ -1,0 +1,10 @@
+{
+  "private": [
+    {
+      "id": "photo1",
+      "file": "photo1.jpg",
+      "date": "2023-01-01",
+      "who": "both"
+    }
+  ]
+}

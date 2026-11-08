@@ -1,0 +1,9 @@
+[
+  {
+    "id": "place1",
+    "name": "City Park",
+    "location": [116.397, 39.916],
+    "date": "2023-05-20",
+    "notes": "Beautiful spring day"
+  }
+]

@@ -1,0 +1,142 @@
+Template Extraction Report
+==========================
+
+## 1. Story Timeline Template
+Location: templates/story-timeline/react-gsap/
+
+### Core Components (src/)
+- Story.jsx              - Main timeline component with GSAP animations
+- cute.jsx               - Photo/media viewer component
+- ui.jsx                 - Utility functions and UI helpers
+- chrome.jsx             - Password gate and authentication
+- story.css              - Extracted story-specific styles (.story-, .tl-, .mem- classes)
+
+Total: 5 files, ~56KB
+
+Key Features:
+- GSAP-based scroll-triggered timeline
+- Password-protected access
+- Photo gallery viewer
+- Memory/chapter navigation
+- Responsive design with safe area support
+
+## 2. Diary App Template
+Location: templates/diary-app/node-sqlite/
+
+### Frontend (src/)
+Core Files:
+- Root.jsx               - Main app router and entry point
+- api.js                 - API client functions
+- icons.jsx              - Icon components (includes CrayonDefs SVG filters)
+- diary.css              - Main diary app styles
+- styles.css             - Additional component styles
+- main.jsx               - Vite entry point
+- chrome.jsx             - Auth and password gate
+- ui.jsx                 - UI utilities
+- cute.jsx               - Photo viewer
+- Story.jsx              - Story timeline view
+- Stats.jsx              - Statistics page
+- chapters.jsx           - Story chapter definitions
+- bits.jsx               - UI components
+- content.js             - Content helpers
+- mapUtil.js             - Map utilities (Amap integration)
+- kittyPaths.js          - SVG path data
+
+Pages (src/pages/):
+- Home.jsx               - Homepage with shortcuts
+- Diary.jsx              - Main diary list page
+- Entry.jsx              - Single diary entry view
+- EntryCard.jsx          - Diary entry card component
+- Write.jsx              - Diary entry editor
+- Album.jsx              - Photo album page
+- MapPage.jsx            - Map view with footprints
+- PlacePicker.jsx        - Location picker
+- Days.jsx               - "On This Day" anniversaries
+- DayCard.jsx            - Anniversary card component
+- Wishes.jsx             - Wishlist feature
+- Capsules.jsx           - Time capsules list
+- Capsule.jsx            - Single capsule view
+- CapsuleWrite.jsx       - Capsule editor
+- AddToHome.jsx          - PWA install prompt
+- Shell.jsx              - App shell/layout
+- common.jsx             - Shared page utilities
+
+Assets (src/assets/):
+- hg-boy.webp, hg-girl.webp
+- doodle/ directory
+
+### Backend (server/)
+Core Files:
+- index.js               - Server entry point
+- app.js                 - Express app setup
+- db.js                  - SQLite database layer
+- config.js              - Configuration management
+- geo.js                 - Geolocation services (Amap)
+- rate.js                - Rate limiting middleware
+- auth.js                - Authentication logic
+- sign.js                - Digital signature utilities
+- util.js                - Server utilities
+- anniversary.js         - Anniversary calculations
+- .env.example           - Environment variables template
+
+Routes (server/routes/):
+- entries.js             - Diary entries CRUD
+- album.js               - Photo album API
+- map.js                 - Map data API
+- home.js                - Homepage data
+- story.js               - Story timeline data
+- wishes.js              - Wishlist API
+- capsules.js            - Time capsules API
+- anniversaries.js       - Anniversary API
+- media.js               - Media file serving
+- media-api.js           - Media upload/management
+
+### Scripts (scripts/)
+- deploy.sh              - Deployment script
+- setup-amap.sh          - Amap configuration helper
+
+### Configuration Files
+- package.json           - Frontend dependencies (root)
+- server/package.json    - Backend dependencies
+- vite.config.js         - Vite build configuration
+- index.html             - HTML entry point
+- .gitignore             - Git ignore rules
+
+### Private Data (private/)
+Example JSON files with placeholder data:
+- memories.json          - Memory entries
+- footprints.json        - Location footprints
+- voices.json            - Voice recordings metadata
+- anniversaries.json     - Important dates
+- photos.json            - Photo metadata
+
+### Public Assets (public/)
+- favicon.svg
+- manifest.webmanifest   - PWA manifest
+- icons/                 - PWA icons
+- audio/                 - Audio files
+
+Total: ~127 files, ~5.7MB
+
+Key Features:
+- Full-featured diary app with SQLite backend
+- Photo album with grid layout
+- Interactive map with footprints (Amap)
+- Wishlist with progress tracking
+- Time capsules (scheduled reveal)
+- Anniversary tracking ("On This Day")
+- Video/audio support
+- PWA support (offline-capable)
+- Password protection
+- Rate limiting
+- RESTful API design
+- Responsive design (mobile-first)
+- Doodle/crayon aesthetic
+
+## Notes
+- All sensitive data removed from example JSON files
+- node_modules, dist, .git excluded
+- Private photos and voices not copied (only metadata examples)
+- Complete code preserved without modifications
+- Directory structure maintained
+- Both templates ready for customization

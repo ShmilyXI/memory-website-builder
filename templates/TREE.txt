@@ -1,0 +1,118 @@
+templates/
+│
+├── README.md                           # Master overview and comparison
+├── FILE_STRUCTURE.txt                  # Detailed file listing
+├── EXTRACTION_SUMMARY.md               # This extraction report
+├── TREE.txt                           # Visual directory tree
+│
+├── story-timeline/
+│   └── react-gsap/
+│       ├── README.md                  # Template documentation
+│       └── src/
+│           ├── Story.jsx              # Main timeline (GSAP)
+│           ├── chrome.jsx             # Password gate
+│           ├── cute.jsx               # Photo viewer
+│           ├── ui.jsx                 # UI utilities
+│           └── story.css              # Story styles
+│
+└── diary-app/
+    └── node-sqlite/
+        ├── README.md                  # Template documentation
+        ├── .gitignore
+        ├── index.html
+        ├── package.json
+        ├── package-lock.json
+        ├── vite.config.js
+        │
+        ├── public/
+        │   ├── favicon.svg
+        │   ├── manifest.webmanifest
+        │   ├── audio/
+        │   └── icons/
+        │
+        ├── src/
+        │   ├── Root.jsx               # App router
+        │   ├── main.jsx               # Entry point
+        │   ├── api.js                 # API client
+        │   ├── icons.jsx              # Icons + CrayonDefs
+        │   ├── diary.css              # Main styles
+        │   ├── styles.css             # Component styles
+        │   ├── chrome.jsx             # Auth
+        │   ├── ui.jsx                 # UI helpers
+        │   ├── cute.jsx               # Photo viewer
+        │   ├── Story.jsx              # Timeline
+        │   ├── Stats.jsx              # Statistics
+        │   ├── chapters.jsx           # Story data
+        │   ├── bits.jsx               # UI bits
+        │   ├── content.js             # Content utils
+        │   ├── mapUtil.js             # Map helpers
+        │   ├── kittyPaths.js          # SVG paths
+        │   │
+        │   ├── assets/
+        │   │   ├── hg-boy.webp
+        │   │   ├── hg-girl.webp
+        │   │   └── doodle/
+        │   │
+        │   └── pages/
+        │       ├── Home.jsx           # Homepage
+        │       ├── Shell.jsx          # App layout
+        │       ├── Diary.jsx          # Diary list
+        │       ├── Entry.jsx          # Entry view
+        │       ├── EntryCard.jsx      # Entry card
+        │       ├── Write.jsx          # Editor
+        │       ├── Album.jsx          # Photo album
+        │       ├── MapPage.jsx        # Map view
+        │       ├── PlacePicker.jsx    # Location picker
+        │       ├── Days.jsx           # Anniversaries
+        │       ├── DayCard.jsx        # Anniversary card
+        │       ├── Wishes.jsx         # Wishlist
+        │       ├── Capsules.jsx       # Capsules list
+        │       ├── Capsule.jsx        # Capsule view
+        │       ├── CapsuleWrite.jsx   # Capsule editor
+        │       ├── AddToHome.jsx      # PWA install
+        │       └── common.jsx         # Shared utils
+        │
+        ├── server/
+        │   ├── .env.example           # Environment template
+        │   ├── package.json
+        │   ├── package-lock.json
+        │   ├── index.js               # Server entry
+        │   ├── app.js                 # Express app
+        │   ├── db.js                  # SQLite layer
+        │   ├── config.js              # Configuration
+        │   ├── geo.js                 # Geolocation
+        │   ├── rate.js                # Rate limiting
+        │   ├── auth.js                # Authentication
+        │   ├── sign.js                # Signing utils
+        │   ├── util.js                # Server utils
+        │   ├── anniversary.js         # Date calculations
+        │   │
+        │   └── routes/
+        │       ├── entries.js         # Diary CRUD
+        │       ├── album.js           # Album API
+        │       ├── map.js             # Map API
+        │       ├── home.js            # Home data
+        │       ├── story.js           # Story API
+        │       ├── wishes.js          # Wishlist API
+        │       ├── capsules.js        # Capsules API
+        │       ├── anniversaries.js   # Dates API
+        │       ├── media.js           # Media serve
+        │       └── media-api.js       # Media upload
+        │
+        ├── scripts/
+        │   ├── deploy.sh              # Deployment
+        │   └── setup-amap.sh          # Map config
+        │
+        └── private/
+            ├── memories.json          # Example data
+            ├── footprints.json        # Example data
+            ├── voices.json            # Example data
+            ├── anniversaries.json     # Example data
+            └── photos.json            # Example data
+
+Summary:
+--------
+Story Timeline:   5 files,   56 KB
+Diary App:      127 files,  5.7 MB
+Documentation:    4 files
+Total:          136 files
